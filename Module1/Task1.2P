@@ -6,7 +6,7 @@ void setup()
   pinMode(2, INPUT);
   pinMode(13, OUTPUT);
   
-  attachInterrupt(digitalPinToInterrupt(2), hello_isr, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(2), new_isr, CHANGE);
   Serial.begin(9600);
 }
 
@@ -19,6 +19,6 @@ void loop()
     delay(100);
 }
 
-void hello_isr(){
+void new_isr(){
   digitalWrite(13, digitalRead(2));
 }
