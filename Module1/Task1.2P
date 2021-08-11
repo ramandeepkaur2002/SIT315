@@ -1,24 +1,25 @@
 // C++ code
 //
-int buttonState =0;
+int buttonState = 0; //the button state is set to zero
 void setup()
 {
-  pinMode(2, INPUT);
-  pinMode(13, OUTPUT);
-  
-  attachInterrupt(digitalPinToInterrupt(2), new_isr, CHANGE);
-  Serial.begin(9600);
+    pinMode(2, INPUT); // input point for sensor
+    pinMode(13, OUTPUT); // initialises led as output  
+
+    attachInterrupt(digitalPinToInterrupt(2), new_isr, CHANGE); // attach interrupt to the ISR vector
+    Serial.begin(9600);
 }
 
 
 void loop()
 {
-  buttonState = digitalRead(2);
+    buttonState = digitalRead(2); // reading value
     digitalWrite(13, digitalRead(2));
-    Serial.println(buttonState);
+    Serial.println(buttonState); // mapping sensor value to the led range on serial monitor 
     delay(100);
 }
 
-void new_isr(){
-  digitalWrite(13, digitalRead(2));
+void new_isr()
+{
+    digitalWrite(13, digitalRead(2));
 }
