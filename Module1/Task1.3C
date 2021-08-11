@@ -1,36 +1,30 @@
-// C++ code
-//
-int buttonState =0;
-
-uint8_t led_state = LOW;
-int SensorValue =0;
-
 void setup()
 {
-  pinMode(A0, INPUT);
-  Serial.begin(9600);
-  
-  pinMode(2, INPUT);
-  Serial.begin(9600);
-  pinMode(9,OUTPUT);
-  pinMode(13, OUTPUT);
-  
-  attachInterrupt(digitalPinToInterrupt(2), new_isr, CHANGE);
-  Serial.begin(9600);
+    pinMode(A0, INPUT); //Input point for photoresistor
+    Serial.begin(9600);
+
+    pinMode(2, INPUT);  //intialize the pin as INPUT
+    Serial.begin(9600);
+    pinMode(9, OUTPUT);//intialize the LED  1 and 2 as OUTPUT
+    pinMode(13, OUTPUT);
+
+    attachInterrupt(digitalPinToInterrupt(2), new_isr, CHANGE);   //AttachInterrupt to the ISR vector
+    Serial.begin(9600);
 }
 
 
 void loop()
 {
-  buttonState = digitalRead(2);
-  digitalWrite(13, digitalRead(2));
-  Serial.println(buttonState);
-  SensorValue = analogRead(A0);
-  Serial.println(SensorValue);
-  analogWrite(9, map(SensorValue, 0, 1023, 0, 255));
-  delay(100);
+    buttonState = digitalRead(2);//reading sensor value
+    digitalWrite(13, digitalRead(2));
+    Serial.println(buttonState);
+    SensorValue = analogRead(A0);//reading sensor value
+    Serial.println(SensorValue);
+    analogWrite(9, map(SensorValue, 0, 1023, 0, 255)); //mapping value sensor value to the LED range
+    delay(100);
 }
 
-void new_isr(){
-  digitalWrite(13, digitalRead(2));
+Void new_isr(){
+led_state =! Led_state;
+digitalWrite(13, led_state);
 }
