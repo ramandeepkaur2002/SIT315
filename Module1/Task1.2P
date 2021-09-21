@@ -22,8 +22,10 @@ void loop()
 
 //interrupt service routine
 //call isr when interrupt occurs
+//ISR function
 void new_isr(){
-  led_state = !led_state;
-  digitalWrite(ledPin, led_state); //sets the led state to High/on
+  led_state = !led_state;//toggle state when interrupt occurs 
+  digitalWrite(ledPin, led_state); //led pin = 13 equal the state value 
 
 }
+      
